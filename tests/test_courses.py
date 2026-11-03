@@ -1,3 +1,6 @@
+@pytest.mark.courses
+@pytest.mark.regression
+
 import re
 from uuid import uuid4
 
