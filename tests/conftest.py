@@ -12,6 +12,15 @@ REGISTRATION_URL = (
 )
 
 
+@pytest.fixture
+def chromium_page(playwright: Playwright) -> Iterator[Page]:
+    browser = playwright.chromium.launch(headless=False)
+    try:
+        yield browser.new_page()
+    finally:
+        browser.close()
+
+
 @pytest.fixture(scope="session")
 def initialize_browser_state(playwright: Playwright) -> None:
     browser = playwright.chromium.launch(headless=False)
